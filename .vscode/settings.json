@@ -1,0 +1,6 @@
+{
+    "explorer.autoReveal": true,
+    "testing.alwaysRevealTestOnStateChange": false,
+    "debug.allowBreakpointsEverywhere": false,
+    "debug.console.acceptSuggestionOnEnter": "on"
+}

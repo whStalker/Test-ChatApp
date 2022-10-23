@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1005481299009",
+    "project_id": "social-app-test-e279e",
+    "storage_bucket": "social-app-test-e279e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1005481299009:android:9a293c7545f62622980ac0",
+        "android_client_info": {
+          "package_name": "com.rustamovnadir.chat_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1005481299009-bt1hmu167k4257p8jmolhs1gk9mngl1t.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAA4bQC5vcVivL7r_rGXHnfc_incrpSb9Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1005481299009-bt1hmu167k4257p8jmolhs1gk9mngl1t.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
