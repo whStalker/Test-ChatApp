@@ -6,29 +6,29 @@ import 'package:firebase_auth/firebase_auth.dart';
 part 'auth_state.dart';
 
 class AuthCubit extends Cubit<AuthState> {
-  AuthCubit() : super(AuthInitial());
+  AuthCubit() : super(const AuthInitial());
 
   Future<void> signIn({
     required String email,
     required String password,
   }) async {
-    emit(AuthLoading());
+    emit(const AuthLoading());
 
     FirebaseAuth auth = FirebaseAuth.instance;
 
     try {
       await auth.signInWithEmailAndPassword(email: email, password: password);
 
-      emit(AuthSignedIn());
+      emit(const AuthSignedIn());
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
-        emit(AuthFailure(errorMassage: 'No user found for that email.'));
+        emit(const AuthFailure(errorMassage: 'No user found for that email.'));
       } else if (e.code == 'wrong-password') {
-        emit(AuthFailure(
+        emit(const AuthFailure(
             errorMassage: 'Wrong password provided for that user.'));
       }
     } catch (error) {
-      emit(AuthFailure(errorMassage: 'An error has occurred'));
+      emit(const AuthFailure(errorMassage: 'An error has occurred'));
     }
   }
 
@@ -37,7 +37,7 @@ class AuthCubit extends Cubit<AuthState> {
     required String username,
     required String password,
   }) async {
-    emit(AuthLoading());
+    emit(const AuthLoading());
     FirebaseAuth auth = FirebaseAuth.instance;
 
     try {
@@ -53,16 +53,23 @@ class AuthCubit extends Cubit<AuthState> {
         'email': email,
       });
 
-      emit(AuthSignedUp());
+      userCredential.user!.updateDisplayName(username);
+
+      emit(const AuthSignedUp());
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
-        emit(AuthFailure(errorMassage: 'The password provided is too weak.'));
+        emit(const AuthFailure(
+            errorMassage: 'The password provided is too weak.'));
       } else if (e.code == 'email-already-in-use') {
-        emit(AuthFailure(
+        emit(const AuthFailure(
             errorMassage: 'The account already exists for that email.'));
       }
     } catch (error) {
-      emit(AuthFailure(errorMassage: 'An error has occurred'));
+      emit(const AuthFailure(errorMassage: 'An error has occurred'));
     }
+  }
+
+  Future<void> signOut() async {
+    await FirebaseAuth.instance.signOut();
   }
 }

@@ -67,7 +67,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
           if (currentState is AuthFailure) {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
-                duration: Duration(seconds: 2),
+                duration: const Duration(seconds: 2),
                 content: Text(currentState.errorMassage),
               ),
             );
@@ -75,7 +75,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
         },
         builder: (context, state) {
           if (state is AuthLoading) {
-            return Center(
+            return const Center(
               child: CircularProgressIndicator(),
             );
           }
@@ -98,7 +98,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       // email
                       TextFormField(
                         keyboardType: TextInputType.emailAddress,
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                           enabledBorder: UnderlineInputBorder(
                             borderSide: BorderSide(color: Colors.black),
                           ),
@@ -123,7 +123,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       // userName
                       TextFormField(
                         focusNode: _userNameFocusNode,
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                           enabledBorder: UnderlineInputBorder(
                             borderSide: BorderSide(color: Colors.black),
                           ),
@@ -148,7 +148,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       // password
                       TextFormField(
                         focusNode: _passwordFocusNode,
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                           enabledBorder: UnderlineInputBorder(
                             borderSide: BorderSide(color: Colors.black),
                           ),
@@ -178,14 +178,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         onPressed: () {
                           _submit(context);
                         },
-                        child: Text('Sign Up'),
+                        child: const Text('Sign Up'),
                       ),
                       TextButton(
                         onPressed: () {
                           Navigator.of(context)
                               .pushReplacementNamed(SignInScreen.id);
                         },
-                        child: Text('Sign In instead'),
+                        child: const Text('Sign In instead'),
                       ),
                     ],
                   ),

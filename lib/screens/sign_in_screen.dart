@@ -61,7 +61,7 @@ class _SignInScreenState extends State<SignInScreen> {
           if (currentState is AuthFailure) {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
-                duration: Duration(seconds: 2),
+                duration: const Duration(seconds: 2),
                 content: Text(currentState.errorMassage),
               ),
             );
@@ -69,7 +69,7 @@ class _SignInScreenState extends State<SignInScreen> {
         },
         builder: ((context, state) {
           if (state is AuthLoading) {
-            return Center(
+            return const Center(
               child: CircularProgressIndicator(),
             );
           }
@@ -92,7 +92,7 @@ class _SignInScreenState extends State<SignInScreen> {
                       // email
                       TextFormField(
                         keyboardType: TextInputType.emailAddress,
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                           enabledBorder: UnderlineInputBorder(
                             borderSide: BorderSide(color: Colors.black),
                           ),
@@ -143,7 +143,7 @@ class _SignInScreenState extends State<SignInScreen> {
                       // password
                       TextFormField(
                         focusNode: _passwordFocusNode,
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                           enabledBorder: UnderlineInputBorder(
                             borderSide: BorderSide(color: Colors.black),
                           ),
@@ -173,14 +173,14 @@ class _SignInScreenState extends State<SignInScreen> {
                         onPressed: () {
                           _submit(context);
                         },
-                        child: Text('Sign In'),
+                        child: const Text('Sign In'),
                       ),
                       TextButton(
                         onPressed: () {
                           Navigator.of(context)
                               .pushReplacementNamed(SignUpScreen.id);
                         },
-                        child: Text('Sign Up instead'),
+                        child: const Text('Sign Up instead'),
                       ),
                     ],
                   ),
