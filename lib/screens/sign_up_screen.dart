@@ -61,7 +61,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
       body: BlocConsumer<AuthCubit, AuthState>(
         listener: (prevState, currentState) {
           if (currentState is AuthSignedUp) {
-            Navigator.of(context).pushReplacementNamed(PostsScreen.id);
+            //Navigator.of(context).pushReplacementNamed(PostsScreen.id);
           }
 
           if (currentState is AuthFailure) {

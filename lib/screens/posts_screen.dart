@@ -1,13 +1,15 @@
-import 'package:chat_app/screens/sign_in_screen.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:image_picker/image_picker.dart';
 
 import 'dart:io';
 
 import '../bloc/auth_cubit.dart';
+import '../models/post_model.dart';
+import 'chat_screen.dart';
 import 'create_post_screen.dart';
+import 'sign_in_screen.dart';
 
 class PostsScreen extends StatefulWidget {
   const PostsScreen({super.key});
@@ -46,10 +48,7 @@ class _PostsScreenState extends State<PostsScreen> {
           // Log out
           IconButton(
             onPressed: () {
-              context.read<AuthCubit>().signOut().then(
-                    (_) => Navigator.of(context)
-                        .pushReplacementNamed(SignInScreen.id),
-                  );
+              context.read<AuthCubit>().signOut();
             },
             icon: const Icon(Icons.logout),
           ),
@@ -74,31 +73,46 @@ class _PostsScreenState extends State<PostsScreen> {
             itemBuilder: (context, index) {
               final QueryDocumentSnapshot doc = snapshot.data!.docs[index];
 
-              return Padding(
-                padding: const EdgeInsets.all(18.0),
-                child: Column(
-                  children: [
-                    Container(
-                      height: MediaQuery.of(context).size.width,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(15),
-                        image: DecorationImage(
-                          image: NetworkImage(doc['imageUrl']),
-                          fit: BoxFit.cover,
+              final Post post = Post(
+                id: doc['postID'],
+                userID: doc['userID'],
+                userName: doc['userName'],
+                timestamp: doc['timestamp'],
+                imageURL: doc['imageUrl'],
+                description: doc['description'],
+              );
+
+              return GestureDetector(
+                onTap: () {
+                  Navigator.of(context)
+                      .pushNamed(ChatScreen.id, arguments: post);
+                },
+                child: Padding(
+                  padding: const EdgeInsets.all(18.0),
+                  child: Column(
+                    children: [
+                      Container(
+                        height: MediaQuery.of(context).size.width,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(15),
+                          image: DecorationImage(
+                            image: NetworkImage(post.imageURL),
+                            fit: BoxFit.cover,
+                          ),
                         ),
                       ),
-                    ),
-                    SizedBox(height: 5),
-                    Text(
-                      doc['userName'],
-                      style: Theme.of(context).textTheme.headline6,
-                    ),
-                    SizedBox(height: 5),
-                    Text(
-                      doc['description'],
-                      style: Theme.of(context).textTheme.headline5,
-                    ),
-                  ],
+                      SizedBox(height: 5),
+                      Text(
+                        post.userName,
+                        style: Theme.of(context).textTheme.headline6,
+                      ),
+                      SizedBox(height: 5),
+                      Text(
+                        post.description,
+                        style: Theme.of(context).textTheme.headline5,
+                      ),
+                    ],
+                  ),
                 ),
               );
             },
