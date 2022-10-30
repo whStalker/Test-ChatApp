@@ -1,3 +1,5 @@
+// ignore_for_file: unnecessary_nullable_for_final_variable_declarations
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -9,7 +11,6 @@ import '../bloc/auth_cubit.dart';
 import '../models/post_model.dart';
 import 'chat_screen.dart';
 import 'create_post_screen.dart';
-import 'sign_in_screen.dart';
 
 class PostsScreen extends StatefulWidget {
   const PostsScreen({super.key});
@@ -55,26 +56,29 @@ class _PostsScreenState extends State<PostsScreen> {
         ],
       ),
       body: StreamBuilder<QuerySnapshot>(
-        stream: FirebaseFirestore.instance.collection('posts').snapshots(),
+        stream: FirebaseFirestore.instance
+            .collection('posts')
+            .orderBy('timestamp')
+            .snapshots(),
         builder: (context, snapshot) {
           if (snapshot.hasError) {
-            return Center(child: Text('Error'));
+            return const Center(child: Text('Error'));
           }
 
           if (snapshot.connectionState == ConnectionState.waiting ||
               snapshot.connectionState == ConnectionState.none) {
             if (snapshot.hasError) {
-              return Center(child: Text('Loading...'));
+              return const Center(child: Text('Loading...'));
             }
           }
 
           return ListView.builder(
             itemCount: snapshot.data?.docs.length ?? 0,
             itemBuilder: (context, index) {
-              final QueryDocumentSnapshot doc = snapshot.data!.docs[index];
+              final QueryDocumentSnapshot? doc = snapshot.data!.docs[index];
 
               final Post post = Post(
-                id: doc['postID'],
+                id: doc!['postID'],
                 userID: doc['userID'],
                 userName: doc['userName'],
                 timestamp: doc['timestamp'],
@@ -101,12 +105,12 @@ class _PostsScreenState extends State<PostsScreen> {
                           ),
                         ),
                       ),
-                      SizedBox(height: 5),
+                      const SizedBox(height: 5),
                       Text(
                         post.userName,
                         style: Theme.of(context).textTheme.headline6,
                       ),
-                      SizedBox(height: 5),
+                      const SizedBox(height: 5),
                       Text(
                         post.description,
                         style: Theme.of(context).textTheme.headline5,

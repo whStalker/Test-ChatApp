@@ -1,5 +1,6 @@
+// ignore_for_file: sized_box_for_whitespace, avoid_print
+
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -54,12 +55,12 @@ class _ChatScreenState extends State<ChatScreen> {
                     .snapshots(),
                 builder: (context, snapshot) {
                   if (snapshot.hasError) {
-                    return Center(child: Text('Error'));
+                    return const Center(child: Text('Error'));
                   }
 
                   if (snapshot.connectionState == ConnectionState.waiting ||
                       snapshot.connectionState == ConnectionState.none) {
-                    return Center(child: Text('Loading...'));
+                    return const Center(child: Text('Loading...'));
                   }
 
                   return ListView.builder(
@@ -99,7 +100,7 @@ class _ChatScreenState extends State<ChatScreen> {
                       child: TextField(
                         controller: _textEditingController,
                         maxLines: 2,
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                           hintText: 'Enter message',
                         ),
                         onChanged: ((value) {
@@ -131,7 +132,7 @@ class _ChatScreenState extends State<ChatScreen> {
                         _message = '';
                       });
                     },
-                    icon: Icon(Icons.arrow_forward_rounded),
+                    icon: const Icon(Icons.arrow_forward_rounded),
                   ),
                 ],
               ),

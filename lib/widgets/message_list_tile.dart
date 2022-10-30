@@ -18,18 +18,18 @@ class MessageListTile extends StatelessWidget {
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(15),
+            topLeft: const Radius.circular(15),
             bottomLeft: chatModel.userID == currentUserID
-                ? Radius.circular(15)
+                ? const Radius.circular(15)
                 : Radius.zero,
-            topRight: Radius.circular(15),
+            topRight: const Radius.circular(15),
             bottomRight: chatModel.userID == currentUserID
                 ? Radius.zero
-                : Radius.circular(15),
+                : const Radius.circular(15),
           ),
         ),
         child: Padding(
-          padding: EdgeInsets.all(8),
+          padding: const EdgeInsets.all(8),
           child: Column(
             crossAxisAlignment: chatModel.userID == currentUserID
                 ? CrossAxisAlignment.end
@@ -40,12 +40,12 @@ class MessageListTile extends StatelessWidget {
             children: [
               Text(
                 'By ${chatModel.userName}',
-                style: TextStyle(color: Colors.black),
+                style: const TextStyle(color: Colors.black),
               ),
-              SizedBox(height: 4),
+              const SizedBox(height: 4),
               Text(
                 chatModel.message,
-                style: TextStyle(color: Colors.black),
+                style: const TextStyle(color: Colors.black),
               ),
             ],
           ),
