@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'posts_screen.dart';
 import 'sign_up_screen.dart';
 import '../bloc/auth_cubit.dart';
 
@@ -54,7 +55,7 @@ class _SignInScreenState extends State<SignInScreen> {
       body: BlocConsumer<AuthCubit, AuthState>(
         listener: (prevState, currentState) {
           if (currentState is AuthSignedIn) {
-            //Navigator.of(context).pushReplacementNamed(PostsScreen.id);
+            Navigator.of(context).pushReplacementNamed(PostsScreen.id);
           }
 
           if (currentState is AuthFailure) {

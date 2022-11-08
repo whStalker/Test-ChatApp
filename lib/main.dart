@@ -46,6 +46,7 @@ class MyApp extends StatelessWidget {
     return BlocProvider<AuthCubit>(
       create: (context) => AuthCubit(),
       child: MaterialApp(
+        debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',
         theme: ThemeData.dark(),
         home: _buildHomeScreen(),
