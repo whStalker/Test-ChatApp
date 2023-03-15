@@ -108,12 +108,12 @@ class _PostsScreenState extends State<PostsScreen> {
                       const SizedBox(height: 5),
                       Text(
                         post.userName,
-                        style: Theme.of(context).textTheme.headline6,
+                        style: Theme.of(context).textTheme.titleLarge,
                       ),
                       const SizedBox(height: 5),
                       Text(
                         post.description,
-                        style: Theme.of(context).textTheme.headline5,
+                        style: Theme.of(context).textTheme.headlineSmall,
                       ),
                     ],
                   ),

@@ -91,8 +91,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     children: [
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: 18.0),
-                        child: Text('Chat App',
-                            style: Theme.of(context).textTheme.headline3),
+                        child: Text(
+                          'Chat App',
+                          style: Theme.of(context).textTheme.displaySmall,
+                        ),
                       ),
                       const SizedBox(height: 15),
                       // email

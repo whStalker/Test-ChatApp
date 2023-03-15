@@ -65,7 +65,7 @@ class _ChatScreenState extends State<ChatScreen> {
 
                   return ListView.builder(
                     itemCount: snapshot.data?.docs.length ?? 0,
-                    itemBuilder: ((context, index) {
+                    itemBuilder: (context, index) {
                       final QueryDocumentSnapshot doc =
                           snapshot.data!.docs[index];
 
@@ -82,7 +82,7 @@ class _ChatScreenState extends State<ChatScreen> {
                             : Alignment.centerLeft,
                         child: MessageListTile(chatModel),
                       );
-                    }),
+                    },
                   );
                 },
               ),
